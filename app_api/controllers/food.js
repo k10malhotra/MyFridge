@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var foodPath = mongoose.model('Food');
 
-/* POST new Food */ /* /api/food */
+/* POST a new Food */ /* /api/food */
 module.exports.foodCreate = function (req, res) {
   console.log(req.body);
   foodPath.create({
@@ -15,9 +15,9 @@ module.exports.foodCreate = function (req, res) {
       console.log(err);
       sendJSONresponse(res, 400, err); 
     } else {
-      res.header(
-      Food:req.protocol + '://' + req.get('host') + '/api/food/' + food._id
-      );
+      /* res.header(
+       Food:req.protocol + '://' + req.get('host') + '/api/food/' + food._id
+      );*/
       console.log(food);
       sendJSONresponse(res, 201, food);
     }
@@ -30,7 +30,7 @@ var sendJsonResponse = function (res, status, content) {
 };
   
   
-  /* GET food List */	
+  /* GET a food List */	
 module.exports.foodDetail = function (req, res) {
   
   if (!req.params.foodid) {
@@ -43,10 +43,10 @@ module.exports.foodDetail = function (req, res) {
     .find({})
     .exec(
       function(err, food)
-          function(err, food) {
+          {
             if (!food){
               sendJSONresponse(res, 404, {
-                "message": "Food items don't exists"
+                "message": "Food items do not exist"
               });
               return;
             } else {
